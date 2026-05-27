@@ -163,7 +163,7 @@ time=$(TZ='Asia/Shanghai' date +"%Y-%m-%d %H:%M:%S")
 shanghai_time=$(TZ='Asia/Shanghai' date +%Y%m%d%H)
 ZIP_NAME="KernelSU-$KERNELSU_VERSION-ROSS-selene-$KERNEL_VERSION-Sea-$SEA_KERNEL_VERSION-$shanghai_time-GithubCI"
 find ./ * -exec touch -m -d "$time" {} \;
-zip -r9 $ZIP_NAME.zip *
+zip -r9 $ZIP_NAME.zip . -x "Kernel/*" -x "*/Kernel/*" -x "ZyClang/*" -x "out/*"
 cp *.zip $WORKDIR/out && cp $DTBO $WORKDIR/out
 
 # 生成 Release 信息
