@@ -149,6 +149,8 @@ fi
 msg " • 🌸 Packing Kernel 🌸 "
 cd $WORKDIR
 # 克隆 Anykernel3
+ANYKERNEL3_GIT="https://github.com/osm0sis/AnyKernel3.git"
+ANYKERNEL3_BRANCHE="master"
 git clone --depth=1 $ANYKERNEL3_GIT -b $ANYKERNEL3_BRANCHE $WORKDIR/Anykernel3
 cd $WORKDIR/Anykernel3
 # 复制内核镜像、dtb、dtbo
@@ -163,7 +165,7 @@ time=$(TZ='Asia/Shanghai' date +"%Y-%m-%d %H:%M:%S")
 shanghai_time=$(TZ='Asia/Shanghai' date +%Y%m%d%H)
 ZIP_NAME="KernelSU-$KERNELSU_VERSION-ROSS-selene-$KERNEL_VERSION-Sea-$SEA_KERNEL_VERSION-$shanghai_time-GithubCI"
 find ./ * -exec touch -m -d "$time" {} \;
-zip -r9 $ZIP_NAME.zip *
+zip -r9 $ZIP_NAME.zip * -x "Kernel/*" -x "ZyClang/*"
 cp *.zip $WORKDIR/out && cp $DTBO $WORKDIR/out
 
 # 生成 Release 信息
