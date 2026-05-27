@@ -129,6 +129,10 @@ LLVM=1"
 # 获取 Linux 内核版本
 rm -rf out
 make O=out $args $DEVICE_DEFCONFIG
+echo "CONFIG_SYSVIPC=y" >> out/.config
+echo "CONFIG_IPC_NS=y" >> out/.config
+echo "CONFIG_SYSVIPC=y" >> $DEVICE_DEFCONFIG_FILE
+echo "CONFIG_IPC_NS=y" >> $DEVICE_DEFCONFIG_FILE
 KERNEL_VERSION=$(make O=out $args kernelversion | grep "4.14")
 msg " • 🌸 LINUX KERNEL VERSION : $KERNEL_VERSION 🌸 "
 # 开始编译
