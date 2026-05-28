@@ -133,6 +133,8 @@ echo "CONFIG_SYSVIPC=y" >> out/.config
 echo "CONFIG_IPC_NS=y" >> out/.config
 echo "CONFIG_SYSVIPC=y" >> $DEVICE_DEFCONFIG_FILE
 echo "CONFIG_IPC_NS=y" >> $DEVICE_DEFCONFIG_FILE
+echo "CONFIG_DEVTMPFS=y" >> arch/arm64/configs/$DEFCONFIG
+echo "CONFIG_DEVTMPFS_MOUNT=y" >> arch/arm64/configs/$DEFCONFIG
 KERNEL_VERSION=$(make O=out $args kernelversion | grep "4.14")
 msg " • 🌸 LINUX KERNEL VERSION : $KERNEL_VERSION 🌸 "
 # 开始编译
